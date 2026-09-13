@@ -1,0 +1,3 @@
+rmarkdown::render("A/submission-template.Rmd")
+rmarkdown::render("A/A1_gushailzh.Rmd")
+setwd("A")

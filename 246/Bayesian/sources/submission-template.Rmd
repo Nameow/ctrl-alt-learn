@@ -1,0 +1,55 @@
+---
+title: "DAT246/DIT246 Submission Template"
+author: "(enter name here)"
+date: "2026-10-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dagitty)
+library(rethinking)
+```
+
+## Task 1: Causal Assumptions
+
+```{r dag}
+
+```
+
+## Task 2: Adjustment Set
+
+## Task 3: Analysis of Outcome 1
+
+### Task 3.a: Statistical Model
+
+$$
+\begin{aligned}
+  \text{comm\_volume}_i &\sim 
+\end{aligned}
+$$
+
+### Task 3.b: Priors
+
+### Task 3.c: Training
+
+### Task 3.d: Conclusion
+
+## Task 4: Analysis of Outcome 2
+
+### Task 4.a: Maximum Entropy Distribution
+
+### Task 4.b: Statistical Model
+
+$$
+\begin{aligned}
+  \text{misunderstandings}_i \sim
+\end{aligned}
+$$
+
+### Task 3.c: Priors
+
+### Task 3.d: Training
+
+### Task 4.e: Conclusion
