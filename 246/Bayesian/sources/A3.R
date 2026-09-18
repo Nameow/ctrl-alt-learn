@@ -1,5 +1,6 @@
 library(rethinking)
 data <- read.csv("data.csv")
+
 complexity <- data$complexity
 lines_c <- standardize(complexity)
 lines_c
@@ -50,7 +51,8 @@ m1 <- ulam(
   cores = 4
 )
 precis(m1, 2)
-# traceplot(m1)
+traceplot(m1)
+
 post <- extract.samples(m1)
 mean(post$beta)
 mean(post$zeta)
