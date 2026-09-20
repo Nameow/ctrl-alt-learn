@@ -3,10 +3,14 @@ data <- read.csv("data.csv")
 
 complexity <- data$complexity
 lines_c <- standardize(complexity)
-lines_c
+# lines_c
+meanl_c <- mean(lines_c)
+meanl_c
 
 req_quality <- data$req_quality
 lines_rq <- standardize(req_quality)
+meanl_rq <- mean(lines_rq)
+meanl_rq
 
 ## The book example (5.2, primate milk)
 ## says the expected outcome should also be zero
