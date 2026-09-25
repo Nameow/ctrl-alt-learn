@@ -1,8 +1,6 @@
 getwd()
 setwd("246/Bayesian/sources")
 setwd("246/Bayesian/exercise")
-setwd("246/assignment")
-
 
 git add 246/Bayesian/exercise 246/README.md
 git status
