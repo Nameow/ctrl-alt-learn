@@ -11,7 +11,7 @@ library(rethinking)
 # 如果只按语言分组,忽略项目, 估计每个project的 bug 数量
 m1 <- ulam(
   alist(
-    n_bugs ~ dgampois(lambda, phi),
+    bugs ~ dgampois(lambda, phi),
     log(lambda) <- alpha[project],
     alpha[project] ~ dnorm(alpha_bar, sigma),
     alpha_bar ~ dnorm(0, 1),
