@@ -1,6 +1,3 @@
-rmarkdown::render("A/submission-template.Rmd")
-rmarkdown::render("A1_gushailzh.Rmd")
-
 getwd()
 setwd("246/Bayesian/sources")
 setwd("246/Bayesian/exercise")
