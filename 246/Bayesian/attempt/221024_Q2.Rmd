@@ -1,0 +1,47 @@
+# 假设数据: group_id (组号), product (连续的实数 outcome)
+
+# complete pooling (课件: Grand mean)
+# 所有组共用一个截距, 忽略组间差异 -> maximum underfitting
+# 注意: 只能有一个截距。写 alpha + beta 的话两者只有和能被确定,
+#       beta 是冗余参数 (和 E7 m4 的 alpha_bar + beta_bar 同一个问题)
+m1 <- quap(
+  alist(
+    product ~ dnorm(mu, sigma),
+    mu <- alpha,
+    alpha ~ dnorm(0, 1),
+    sigma ~ dexp(1)
+  ),
+  data = list(product = product)
+)
+
+# no pooling (课件: Fixed effects)
+# 每组一个截距, 先验是固定常数, 组与组之间不互相学习
+# 数据少的组被噪声主导 -> maximum overfitting
+m2 <- quap(
+  alist(
+    product ~ dnorm(alpha[group_id], sigma),
+    alpha[group_id] ~ dnorm(0, 1),
+    sigma ~ dexp(1)
+  ),
+  data = list(group_id = group_id, product = product)
+)
+
+# partial pooling (课件: Varying effects)
+# 每组一个截距, 但先验的均值 alpha_bar 和标准差 tau 从数据里学
+# (hyperparameters, 各自带 hyperprior)
+# 组与组互相借信息, 数据少的组被拉向 alpha_bar (shrinkage),
+# 拉多少由 tau 决定 -> adaptive regularization
+m3 <- quap(
+  alist(
+    product ~ dnorm(alpha[group_id], sigma),
+    alpha[group_id] ~ dnorm(alpha_bar, tau),
+    alpha_bar ~ dnorm(0, 1),
+    tau ~ dexp(1),
+    sigma ~ dexp(1)
+  ),
+  data = list(group_id = group_id, product = product)
+)
+
+# 三个模型只差两处:
+#   截距:    alpha (一个)  vs  alpha[group_id] (每组一个)
+#   先验 sd: 固定常数 1    vs  从数据里学的 tau

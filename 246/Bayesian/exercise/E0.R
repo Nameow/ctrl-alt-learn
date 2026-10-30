@@ -1,3 +1,4 @@
+library(rethinking)
 lines_changed <- c(50, 120, 30, 200, 80)
 xbar <- mean(lines_changed)
 xbar
@@ -16,11 +17,12 @@ sd_y
 m1 <- quap(
   alist(
     review_time ~ dnorm(mu, sigma),
-    mu <- alpha + beta * lines_z,
+    mu <- alpha + beta * lines_x,
     alpha ~ dnorm(24, 14),
     beta  ~ dnorm(14, 7),
     sigma ~ dexp(1)
   ),
-  data = list(review_time = review_time, lines_z = lines_z)
+  data = list(review_time = review_time, lines_x = lines_x)
 )
 precis(m1)
+traceplot(m1)
